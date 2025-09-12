@@ -1,11 +1,19 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text, ScrollView, RefreshControl } from 'react-native'
+import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Ionicons } from '@expo/vector-icons'
 import SignOutButton from '@/components/SignOutButton'
 import { useUserSync } from '@/hooks/useUserSync'
+import PostComposer from '@/components/PostComposer'
 
 const HomeScreen = () => {
+
+    const [isRefetching, setIsRefetching] = useState(false);
+
+    const handlePullToRefresh = async () => {
+        setIsRefetching(true);
+        setIsRefetching(false);
+    };
 
     useUserSync();
     return (
@@ -15,6 +23,21 @@ const HomeScreen = () => {
                 <Text className="text-xl font-bold text-gray-900">Home</Text>
                 <SignOutButton />
             </View>
+
+            <ScrollView
+                showsVerticalScrollIndicator={false}
+                className="flex-1"
+                contentContainerStyle={{ paddingBottom: 80 }}
+                refreshControl={
+                    <RefreshControl
+                        refreshing={isRefetching}
+                        onRefresh={handlePullToRefresh}
+                        tintColor={"#1DA1F2"}
+                    />
+                }
+            >
+                <PostComposer />
+            </ScrollView>
         </SafeAreaView>
     )
 }
