@@ -5,6 +5,7 @@ import { Ionicons } from '@expo/vector-icons'
 import SignOutButton from '@/components/SignOutButton'
 import { useUserSync } from '@/hooks/useUserSync'
 import PostComposer from '@/components/PostComposer'
+import PostsList from '@/components/PostsList'
 
 const HomeScreen = () => {
 
@@ -37,6 +38,7 @@ const HomeScreen = () => {
                 }
             >
                 <PostComposer />
+                <PostsList />
             </ScrollView>
         </SafeAreaView>
     )
