@@ -51,7 +51,7 @@ export const useProfile = () => {
     isEditModalVisible,
     formData,
     openEditModal,
-    closeEditModel: () => setIsEditModalVisible(false),
+    closeEditModal: () => setIsEditModalVisible(false),
     saveProfile: () => updateProfileMutation.mutate(formData),
     updateFormField,
     isUpdating: updateProfileMutation.isPending,
